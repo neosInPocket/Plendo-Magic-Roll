@@ -1,28 +1,33 @@
+using System;
 using System.Collections;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class BouncyBall : MonoBehaviour
 {
 	[SerializeField] private CircleCollider2D circleCollider2D;
 	[SerializeField] private Rigidbody2D rigid;
 	[SerializeField] private SpriteRenderer spriteRenderer;
-	[SerializeField] private GameObject popEffect;
+	[SerializeField] private GameObject[] popEffects;
 	[SerializeField] private Sprite[] sprites;
 	[SerializeField] private Material[] materials;
-	[SerializeField] private Vector2 randomSpeeds;
 	public BallColor BallColor => currentBallColor;
 	public bool Avaliable => !gameObject.activeSelf;
 	private BallColor currentBallColor;
-	private Vector2 screenSize;
+	private Vector2 currentSpeed;
+	private float speedMagnitude;
 
-	private void Start()
+	private void Update()
 	{
-		screenSize = ViewInfo.Screen;
+		if (Avaliable) return;
+
+		rigid.velocity = currentSpeed;
 	}
 
-
-	public void Initialize(BallColor ballColor, Vector2 position)
+	public void Initialize(BallColor ballColor, Vector2 position, float speed)
 	{
+		speedMagnitude = speed;
+		gameObject.SetActive(true);
 		spriteRenderer.enabled = true;
 		circleCollider2D.enabled = true;
 		rigid.constraints = RigidbodyConstraints2D.None;
@@ -32,9 +37,42 @@ public class BouncyBall : MonoBehaviour
 		spriteRenderer.material = materials[(int)ballColor];
 
 		transform.position = position;
+		currentSpeed = GetRandomSpeed(speed);
+	}
+
+	private Vector2 GetRandomSpeed(float speedValue)
+	{
 		var randomAngle = Random.Range(0, 360f);
 		var randomDirectionVector = new Vector2(Mathf.Cos(randomAngle * Mathf.PI / 180f), -Mathf.Sin(randomAngle * Mathf.PI / 180f));
-		rigid.velocity = Random.Range(randomSpeeds.x, randomSpeeds.y) * randomDirectionVector;
+		var result = speedValue * randomDirectionVector;
+		return result;
+	}
+
+	private void OnCollisionEnter2D(Collision2D collision)
+	{
+		if (collision.transform.position.y > 0 && collision.transform.position.x == 0)
+		{
+			currentSpeed.y *= -1;
+			return;
+		}
+
+		if (collision.transform.position.y < 0 && collision.transform.position.x == 0)
+		{
+			currentSpeed.y *= -1;
+			return;
+		}
+
+		if (collision.transform.position.x > 0 && collision.transform.position.y == 0)
+		{
+			currentSpeed.x *= -1;
+			return;
+		}
+
+		if (collision.transform.position.x < 0 && collision.transform.position.y == 0)
+		{
+			currentSpeed.x *= -1;
+			return;
+		}
 	}
 
 	public void PopBall()
@@ -47,10 +85,11 @@ public class BouncyBall : MonoBehaviour
 		spriteRenderer.enabled = false;
 		circleCollider2D.enabled = false;
 		rigid.constraints = RigidbodyConstraints2D.FreezeAll;
-		popEffect.SetActive(true);
+		popEffects[(int)BallColor].SetActive(true);
 		yield return new WaitForSeconds(1f);
-		popEffect.SetActive(false);
+		popEffects[(int)BallColor].SetActive(false);
 		gameObject.SetActive(false);
+		Initialize(currentBallColor, transform.position, speedMagnitude);
 	}
 }
 

@@ -13,6 +13,7 @@ public class StoreHolder : MonoBehaviour
 	[SerializeField] private List<Image> stars;
 	[SerializeField] private Button buy;
 	[SerializeField] private List<DiamodsRefresher> diamodsRefreshers;
+	[SerializeField] private TMP_Text priceText;
 	private int currentSelectedIndex;
 
 	private void Start()
@@ -44,6 +45,7 @@ public class StoreHolder : MonoBehaviour
 
 		RefreshDiamodsContainers();
 		RefreshCurrentUpgradePoints(SavingManager.Manager.upgrades[currentSelectedIndex]);
+		priceText.text = obj.Price.ToString();
 	}
 
 	public void Buy()

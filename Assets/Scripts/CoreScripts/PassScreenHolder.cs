@@ -1,18 +1,41 @@
-using System.Collections;
-using System.Collections.Generic;
+using System;
 using UnityEngine;
+using UnityEngine.InputSystem.EnhancedTouch;
+using Touch = UnityEngine.InputSystem.EnhancedTouch.Touch;
 
 public class PassScreenHolder : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private GameObject mainTextObject;
+    private Action OnScreenTouchAction;
+
+    private void Start()
     {
-        
+        EnhancedTouchSupport.Enable();
+        TouchSimulation.Enable();
     }
 
-    // Update is called once per frame
-    void Update()
+    public void StartAction(Action screenTouch)
     {
-        
+        OnScreenTouchAction = screenTouch;
+
+        if (mainTextObject != null)
+        {
+            mainTextObject.SetActive(true);
+        }
+
+        Touch.onFingerDown += OnScreenTouch;
+    }
+
+    private void OnScreenTouch(Finger finger)
+    {
+        Touch.onFingerDown -= OnScreenTouch;
+        OnScreenTouchAction();
+
+        mainTextObject.SetActive(false);
+    }
+
+    private void OnDestroy()
+    {
+        Touch.onFingerDown -= OnScreenTouch;
     }
 }

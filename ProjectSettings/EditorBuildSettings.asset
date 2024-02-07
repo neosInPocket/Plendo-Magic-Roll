@@ -11,4 +11,52 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/NextGameScene.unity
     guid: f82edddd25501034386f74cb9bc08cda
+  - enabled: 1
+    path: Assets/Scenes/BouncingBallScene.unity
+    guid: 5f6252025c27d434193b2f22f7a7ed19
+  - enabled: 1
+    path: Assets/Scenes/BouncingBallScene 1.unity
+    guid: 7774a972c044ff749ad40812f5978465
+  - enabled: 1
+    path: Assets/Scenes/BouncingBallScene 2.unity
+    guid: f26ecc3696a66ee44b32270f2f659ea2
+  - enabled: 1
+    path: Assets/Scenes/BouncingBallScene 3.unity
+    guid: b006ef5158fd95d45be90cfe294c64e8
+  - enabled: 1
+    path: Assets/Scenes/BouncingBallScene 4.unity
+    guid: a7058cedd9e3e5048a5bff2cd8e6615a
+  - enabled: 1
+    path: Assets/Scenes/BouncingBallScene 5.unity
+    guid: af1b7738b3b389641bfa54024c9dd703
+  - enabled: 1
+    path: Assets/Scenes/BouncingBallScene 6.unity
+    guid: b6431b437b9aab3479655e7c16ad47a5
+  - enabled: 1
+    path: Assets/Scenes/BouncingBallScene 7.unity
+    guid: 446b2d1d9c128864dab687c55736e557
+  - enabled: 1
+    path: Assets/Scenes/BouncingBallScene 8.unity
+    guid: d4ca4ec9b394ad74dad564707c8e0997
+  - enabled: 1
+    path: Assets/Scenes/BouncingBallScene 9.unity
+    guid: c7d801e145c9da94f9326353a5ae904b
+  - enabled: 1
+    path: Assets/Scenes/BouncingBallScene 10.unity
+    guid: 4f62b4513a77325459ba9d5d3d519c35
+  - enabled: 1
+    path: Assets/Scenes/BouncingBallScene 11.unity
+    guid: b846da2532a0ef64eb607cc7f007a7ca
+  - enabled: 1
+    path: Assets/Scenes/BouncingBallScene 12.unity
+    guid: 9b913dcaaff321b4d8edd8fb2c8603f3
+  - enabled: 1
+    path: Assets/Scenes/BouncingBallScene 13.unity
+    guid: 70f144f2d64dab240a9ac60e169278c7
+  - enabled: 1
+    path: Assets/Scenes/BouncingBallScene 14.unity
+    guid: a5e38ed3d325841459eb37cec8a549ba
+  - enabled: 1
+    path: Assets/Scenes/BouncingBallScene 15.unity
+    guid: 75ac045335429a54fb025bd9872d3028
   m_configObjects: {}

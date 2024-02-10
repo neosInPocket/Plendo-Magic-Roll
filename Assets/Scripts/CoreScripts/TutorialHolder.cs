@@ -20,7 +20,7 @@ public class TutorialHolder : MonoBehaviour
 		OnCompletedAction = tutorialCompleted;
 		gameObject.SetActive(true);
 		Touch.onFingerDown += Reaction;
-		characterText.text = "WELCOME TO ANOTHER ONE PLIINKO!";
+		characterText.text = "WELCOME TO Plendo Magic Roll!";
 	}
 
 	private void Reaction(Finger finger)

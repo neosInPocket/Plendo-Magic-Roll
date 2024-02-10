@@ -2,7 +2,7 @@ using UnityEngine;
 
 public class ViewInfo : MonoBehaviour
 {
-	public static Vector2 Screen { get; private set; }
+	public static Vector2 Screen => GetWorldPoint(new Vector3(UnityEngine.Screen.width, UnityEngine.Screen.height));
 
 	public static Vector3 GetWorldPoint(Vector2 screenPosition)
 	{
@@ -27,10 +27,5 @@ public class ViewInfo : MonoBehaviour
 		var screenPoint = GetWorldPoint(screenPosition);
 		var result = Physics2D.Raycast(screenPoint, Vector3.forward);
 		return result;
-	}
-
-	static ViewInfo()
-	{
-		Screen = GetWorldPoint(new Vector3(UnityEngine.Screen.width, UnityEngine.Screen.height));
 	}
 }
